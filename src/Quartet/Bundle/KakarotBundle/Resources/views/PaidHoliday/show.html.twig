@@ -1,0 +1,29 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}有休申請　削除{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>開始日</th>
+                        <td>{{ entity.startDate|date('Y/m/d') }}</td>
+                    </tr>
+                    <tr>
+                        <th>終了日</th>
+                        <td>{{ entity.endDate|date('Y/m/d') }}</td>
+                    </tr>
+                    <tr>
+                        <th>理由</th>
+                        <td>{{ entity.note }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {{ form(delete_form) }}
+            <br>
+            <a href="{{ path('paidholiday') }}" class="btn btn-warning" role="button">一覧に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}

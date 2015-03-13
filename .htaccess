@@ -1,0 +1,17 @@
+# アクセス拒否.
+Order Deny,Allow
+Deny from All
+
+# Basic 認証.
+AuthType Basic
+AuthUserFile /var/www/.htpasswd
+AuthGroupFile /dev/null
+AuthName "kakarot"
+Require valid-user
+
+# IP 指定許可.
+Satisfy Any
+Allow from All
+Allow from 127.0.0.1
+Allow from 192.168.11.0/24
+Allow from 122.103.201.2

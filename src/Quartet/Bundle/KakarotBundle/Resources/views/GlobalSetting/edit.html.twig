@@ -1,0 +1,13 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% block headline %}いいね！更新頻度{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            {{ form(edit_form) }}
+            <br>
+            <a href="{{ path('globalsetting') }}" class="btn btn-warning" role="button">一覧に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}

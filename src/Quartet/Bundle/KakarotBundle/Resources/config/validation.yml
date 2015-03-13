@@ -1,0 +1,3 @@
+Quartet\Bundle\KakarotBundle\Entity\PaidHoliday:
+  constraints:
+    - Quartet\Bundle\KakarotBundle\Validator\Constraints\DateCheck: ~

@@ -1,0 +1,27 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block headline %}ログイン{% endblock headline %}
+
+{% block content_row %}
+
+{% if error %}
+    <div>{{ error|trans }}</div>
+{% endif %}
+
+<form action="{{ path("fos_user_security_check") }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+    <label for="username">ログイン名</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+    <br>
+    <label for="password">パスワード</label>
+    <input type="password" id="password" name="_password" required="required" />
+    <br>
+    <input type="checkbox" id="remember_me" name="_remember_me" checked />
+    <label for="remember_me">ログイン状態を記憶する</label>
+    <br>
+    <input type="submit" id="_submit" name="_submit" value="ログイン" />
+</form>
+{% endblock content_row %}

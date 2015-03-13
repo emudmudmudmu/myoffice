@@ -1,0 +1,33 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% block headline %}経費項目一覧{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>役職</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td>{{ entity.id }}</td>
+                        <td>{{ entity.name }}</td>
+                        <td><a href="{{ path('accounttitle_edit', { 'id': entity.id }) }}" class="btn btn-info" role="button">編集</a>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <a href="{{ path('accounttitle_new') }}" class="btn btn-primary" role="button">新規作成</a>
+            <br>
+            <br>
+            <a href="{{ path('management') }}" class="btn btn-warning" role="button">管理画面に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}

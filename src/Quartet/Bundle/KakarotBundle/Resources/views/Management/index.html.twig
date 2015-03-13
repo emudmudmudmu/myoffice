@@ -1,0 +1,52 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% block headline %}管理画面{% endblock headline %}
+
+{% block content_row %}
+    <h3>共通設定</h3>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td class="management_label_td">ユーザー情報</td>
+                <td class="management_button_td"><a href="{{ path('user') }}" class="btn btn-info" role="button">変更</a></td>
+            </tr>
+            <tr>
+                <td class="management_label_td">権限設定</td>
+                <td class="management_button_td"><a href="{{ path('role') }}" class="btn btn-warning" role="button">表示</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>MyOffice</h3>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td class="management_label_td">役職一覧</td>
+                <td class="management_button_td"><a href="{{ path('position') }}" class="btn btn-info" role="button">変更</a></td>
+            </tr>
+            <tr>
+                <td class="management_label_td">部署一覧</td>
+                <td class="management_button_td"><a href="{{ path('division') }}" class="btn btn-info" role="button">変更</a></td>
+            </tr>
+            <tr>
+                <td class="management_label_td">経費項目一覧</td>
+                <td class="management_button_td"><a href="{{ path('accounttitle') }}" class="btn btn-info" role="button">変更</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>社内ポータルサイト</h3>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td class="management_label_td">いいね！更新頻度</td>
+                <td class="management_button_td"><a href="{{ path('globalsetting') }}" class="btn btn-info" role="button">変更</a></td>
+            </tr>
+            <tr>
+                <td class="management_label_td">曜日テーブル設定</td>
+                <td class="management_button_td"><a href="{{ path('day') }}" class="btn btn-warning" role="button">表示</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock content_row %}

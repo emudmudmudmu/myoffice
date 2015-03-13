@@ -1,0 +1,49 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}勤怠管理　削除{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>日付</th>
+                        <td>{{ entity.date|date('Y/m/d') }}</td>
+                    </tr>
+                    <tr>
+                        <th>出勤</th>
+                        <td>{{ entity.attended|date('H:i') }}</td>
+                    </tr>
+                    <tr>
+                        <th>退勤</th>
+                        <td>{{ entity.returned|date('H:i') }}</td>
+                    </tr>
+                    <tr>
+                        <th>昼休憩開始</th>
+                        <td>{{ entity.break1Started|date('H:i') }}</td>
+                    </tr>
+                    <tr>
+                        <th>昼休憩終了</th>
+                        <td>{{ entity.break1Ended|date('H:i') }}</td>
+                    </tr>
+                    <tr>
+                        <th>夜休憩開始</th>
+                        <td>{{ entity.break2Started|date('H:i') }}</td>
+                    </tr>
+                    <tr>
+                        <th>夜休憩終了</th>
+                        <td>{{ entity.break2Ended|date('H:i') }}</td>
+                    </tr>
+                    <tr>
+                        <th>メモ</th>
+                        <td>{{ entity.note }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {{ form(delete_form) }}
+            <br>
+            <a href="{{ path('attendance') }}" class="btn btn-warning" role="button">一覧に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}

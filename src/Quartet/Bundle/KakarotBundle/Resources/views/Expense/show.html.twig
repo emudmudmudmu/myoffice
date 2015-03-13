@@ -1,0 +1,45 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}経費管理　削除{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>使用日</th>
+                        <td>{{ entity.date|date('Y/m/d') }}</td>
+                    </tr>
+                    <tr>
+                        <th>支払先</th>
+                        <td>{{ entity.payee }}</td>
+                    </tr>
+                    <tr>
+                        <th>金額</th>
+                        <td>{{ entity.amount }}</td>
+                    </tr>
+                    <tr>
+                        <th>状態</th>
+                        <td>
+                            {% if 'open' == entity.status %}
+                                未精算
+                            {% elseif 'processing' == entity.status %}
+                                清算中
+                            {% elseif 'closed' == entity.status %}
+                                精算済
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>備考</th>
+                        <td>{{ entity.note }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {{ form(delete_form) }}
+            <br>
+            <a href="{{ path('expense') }}" class="btn btn-warning" role="button">一覧に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}

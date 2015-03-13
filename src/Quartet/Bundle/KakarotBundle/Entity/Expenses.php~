@@ -1,0 +1,286 @@
+<?php
+
+namespace Quartet\Bundle\KakarotBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Expenses
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Quartet\Bundle\KakarotBundle\Entity\ExpensesRepository")
+ */
+class Expenses
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="myoffice_expenses")
+     */
+    private $user;
+
+    /**
+     * @ORM\JoinColumn(name="account_title_id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Account_Titles", inversedBy="expenses")
+     */
+    private $accountTitle;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="payee", type="text", nullable=false)
+     */
+    private $payee;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="amount", type="integer", nullable=false)
+     */
+    private $amount;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="note", type="text", nullable=true)
+     */
+    private $note;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="clearing_date", type="date", nullable=true)
+     */
+    private $clearingDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", columnDefinition="enum('open','processing','closed')", nullable=false)
+     */
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime", nullable=false)
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime", nullable=false)
+     */
+    private $updated;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Expenses
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set payee
+     *
+     * @param string $payee
+     * @return Expenses
+     */
+    public function setPayee($payee)
+    {
+        $this->payee = $payee;
+
+        return $this;
+    }
+
+    /**
+     * Get payee
+     *
+     * @return string
+     */
+    public function getPayee()
+    {
+        return $this->payee;
+    }
+
+    /**
+     * Set amount
+     *
+     * @param integer $amount
+     * @return Expenses
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Get amount
+     *
+     * @return integer
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     * @return Expenses
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * Set clearingDate
+     *
+     * @param \DateTime $clearingDate
+     * @return Expenses
+     */
+    public function setClearingDate($clearingDate)
+    {
+        $this->clearingDate = $clearingDate;
+
+        return $this;
+    }
+
+    /**
+     * Get clearingDate
+     *
+     * @return \DateTime
+     */
+    public function getClearingDate()
+    {
+        return $this->clearingDate;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Expenses
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Expenses
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     * @return Expenses
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+}

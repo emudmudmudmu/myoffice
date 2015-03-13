@@ -1,0 +1,68 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}MyOffice{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td class="myoffice_list_title">
+                            勤怠管理
+                        </td>
+                        <td class="myoffice_list_button">
+                            <a href="{{ path('attendance') }}" class="btn btn-info" role="button">編集</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="myoffice_list_title">
+                            経費管理
+                        </td>
+                        <td class="myoffice_list_button">
+                            <a href="{{ path('expense') }}" class="btn btn-info" role="button">編集</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="myoffice_list_title">
+                            有休申請
+                        </td>
+                        <td class="myoffice_list_button">
+                            <a href="{{ path('paidholiday') }}" class="btn btn-info" role="button">申請</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td class="myoffice_list_title">
+                            経費精算
+                        </td>
+                        <td class="myoffice_list_button">
+                            <a href="{{ path('expense_processing') }}" class="btn btn-warning" role="button">精算</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="myoffice_list_title">
+                            有休承認
+                        </td>
+                        <td class="myoffice_list_button">
+                            <a href="{{ path('paidholiday_approval') }}" class="btn btn-warning" role="button">承認</a>
+                        </td>
+                    </tr>
+                    {% if app.user.role.id == 2 %}
+                        <tr>
+                            <td class="myoffice_list_title">
+                                管理画面
+                            </td>
+                            <td class="myoffice_list_button">
+                                <a href="{{ path('management') }}" class="btn btn-warning" role="button">表示</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content_row %}

@@ -1,0 +1,47 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}経費管理　新規作成{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            {{ form_start(form) }}
+                <table class="table table-striped">
+                    <tr>
+                        <td class="expense_title_td">{{ form_label(form.date, '使用日') }}</td>
+                        <td class="expense_form_td">{{ form_widget(form.date.year) }}</td>
+                        <td class="expense_character_td">/</td>
+                        <td class="expense_form_td">{{ form_widget(form.date.month) }}</td>
+                        <td class="expense_character_td">/</td>
+                        <td class="expense_form_td">{{ form_widget(form.date.day) }}</td>
+                        <td class="expense_space_td"></td>
+                    </tr>
+                    <tr>
+                        <td class="expense_title_td">{{ form_label(form.payee, '支払先') }}</td>
+                        <td colspan="5">{{ form_widget(form.payee) }}</td>
+                        <td class="expense_space_td"></td>
+                    </tr>
+                    <tr>
+                        <td class="expense_title_td">{{ form_label(form.accountTitle, '経費項目') }}</td>
+                        <td colspan="5">{{ form_widget(form.accountTitle) }}</td>
+                        <td class="expense_space_td"></td>
+                    </tr>
+                    <tr>
+                        <td class="expense_title_td">{{ form_label(form.amount, '金額') }}</td>
+                        <td colspan="5">{{ form_widget(form.amount) }}</td>
+                        <td class="expense_space_td"></td>
+                    </tr>
+                    <tr>
+                        <td class="expense_title_td">{{ form_label(form.note, '備考') }}</td>
+                        <td colspan="6">{{ form_widget(form.note) }}</td>
+                    </tr>
+                </table>
+                <div class="expense_hidden_area">
+                    {{ form_widget(form.user) }}
+                </div>
+            {{ form_end(form) }}
+            <br>
+            <a href="{{ path('expense') }}" class="btn btn-warning" role="button">一覧に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}

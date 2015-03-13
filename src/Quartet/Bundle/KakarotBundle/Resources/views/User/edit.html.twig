@@ -1,0 +1,71 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% block headline %}ユーザー情報　編集{% endblock headline %}
+
+{% block content_row %}
+     <div class="container">
+         <div class="contents">
+             {{ form_start(edit_form) }}
+                {{ form_label(edit_form.username, 'ログイン名') }}{{ form_widget(edit_form.username) }}
+                {{ form_label(edit_form.name, '氏名') }}{{ form_widget(edit_form.name) }}
+                {{ form_label(edit_form.email, 'メールアドレス') }}{{ form_widget(edit_form.email) }}
+                {{ form_label(edit_form.division, '部署') }}{{ form_widget(edit_form.division) }}
+                {{ form_label(edit_form.position, '役職') }}{{ form_widget(edit_form.position) }}
+                {{ form_label(edit_form.parent, '上長') }}{{ form_widget(edit_form.parent) }}
+                {{ form_label(edit_form.role, '権限') }}{{ form_widget(edit_form.role) }}
+                <br>
+                <table>
+                    <tr><td colspan="10"><b>ゴミ捨て当番・掃除当番　不可曜日</b></td></tr>
+                    <tr>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[0]) }}</td>
+                        <td class="daySetting_label">月</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[1]) }}</td>
+                        <td class="daySetting_label">火</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[2]) }}</td>
+                        <td class="daySetting_label">水</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[3]) }}</td>
+                        <td class="daySetting_label">木</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[4]) }}</td>
+                        <td class="daySetting_label">金</td>
+                    </tr>
+
+                    <tr><td colspan="10"><b>いいね！ 不可曜日</b></td></tr>
+                    <tr>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[5]) }}</td>
+                        <td class="daySetting_label">月</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[6]) }}</td>
+                        <td class="daySetting_label">火</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[7]) }}</td>
+                        <td class="daySetting_label">水</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[8]) }}</td>
+                        <td class="daySetting_label">木</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[9]) }}</td>
+                        <td class="daySetting_label">金</td>
+                    </tr>
+
+                    <tr><td colspan="10"><b>知っ得　不可曜日</b></td></tr>
+                    <tr>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[10]) }}</td>
+                        <td class="daySetting_label">月</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[11]) }}</td>
+                        <td class="daySetting_label">火</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[12]) }}</td>
+                        <td class="daySetting_label">水</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[13]) }}</td>
+                        <td class="daySetting_label">木</td>
+                        <td class="daySetting_form">{{ form_widget(edit_form.daySettings[14]) }}</td>
+                        <td class="daySetting_label">金</td>
+                    </tr>
+            </table>
+            {{ form_end(edit_form) }}
+            <br>
+            <a href="{{ path('fos_user_change_password') }}" class="btn btn-success">パスワード変更</a>
+            <br>
+            <br>
+            <a href="{{ path('user_show', { 'id': entity.id }) }}" class="btn btn-danger">削除</a>
+            <br>
+            <br>
+            <a href="{{ path('user') }}" class="btn btn-warning">一覧に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}

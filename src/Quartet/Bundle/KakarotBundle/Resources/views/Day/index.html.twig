@@ -1,0 +1,32 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% block headline %}曜日テーブル設定{% endblock headline %}
+
+{% block content_row %}
+
+<div class="container">
+    <div class="contents">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>曜日</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('management') }}" class="btn btn-warning" role="button">管理画面に戻る</a>
+
+    </div>
+</div>
+
+{% endblock content_row %}

@@ -1,0 +1,14 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% block headline %}部署　新規作成{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            {{ form(form) }}
+            <br>
+            <br>
+            <a href="{{ path('division') }}" class="btn btn-warning" role="button">一覧に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}

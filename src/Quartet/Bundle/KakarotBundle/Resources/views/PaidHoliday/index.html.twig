@@ -1,0 +1,51 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}有休申請{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            <div class="paidholiday_top">
+                <div class="paidholiday_nav_left">
+                    <a href="{{ path('paidholiday_new') }}" class="btn btn-primary" role="button">新規作成</a>
+                </div>
+                <div class="paidholiday_nav_right">
+                    <a href="{{ path('paidholiday_pager', { 'date': prevDate }) }}">&lt;&lt;{{ prevDate|date('Y/m') }}</a>
+                    &nbsp;&nbsp;
+                    <span class="paidholiday_currentDate">{{ currentDate|date('Y/m') }}</span>
+                    &nbsp;&nbsp;
+                    <a href="{{ path('paidholiday_pager', { 'date': nextDate }) }}">&gt;&gt;{{ nextDate|date('Y/m') }}</a>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="paidholiday_list_date">開始日</th>
+                        <th class="paidholiday_list_date">終了日</th>
+                        <th class="paidholiday_list_note">理由</th>
+                        <th class="paidholiday_list_button"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td class="paidholiday_list_date">
+                            {{ entity.startDate|date('Y/m/d') }}({{daysLabel[entity.startDate|date('w')]}})
+                        </td>
+                        <td class="paidholiday_list_date">
+                            {% if entity.startDate != entity.endDate %}
+                               {{ entity.endDate|date('Y/m/d') }}({{daysLabel[entity.endDate|date('w')]}})
+                            {% endif %}
+                        </td>
+                        <td class="paidholiday_list_note">{{ entity.note }}</td>
+                        <td class="paidholiday_list_button">
+                            <a href="{{ path('paidholiday_edit', { 'id': entity.id }) }}" class="btn btn-info" role="button">編集</a>
+                            <a href="{{ path('paidholiday_show', { 'id': entity.id }) }}" class="btn btn-danger" role="button">削除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content_row %}

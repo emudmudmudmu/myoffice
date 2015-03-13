@@ -1,0 +1,114 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}経費管理　未精算一覧{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            <div class="expense_top">
+                <div class="expense_nav_left">
+                    <form action="{{ path('expense_processing_select') }}" method="POST" name="expense_form" id="expense_form">
+                        <input type="hidden" id="expense_status" name="expense_status" value=""/>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span class="btn btn-primary" role="button" id="expense_processing">精算中にする</span>
+                                </td>
+                                <td>
+                                    <span class="btn btn-success" role="button" id="expense_closed">一括精算</span>
+                                </td>
+                                <td>
+                                    <span class="btn btn-danger" role="button" id="expense_open">申請却下</span>
+                                </td>
+                                <td>
+                                    <select id="expense_user_list" name="expense_user_list" class="form-control">
+                                        <option value="">&lt;全員&gt;</a>
+                                        {% for user in userEntities %}
+                                            {% if user.id == selectUser %}
+                                                <option value="{{ user.id }}" selected>{{ user.name }}</open>
+                                            {% else %}
+                                                <option value="{{ user.id }}">{{ user.name }}</open>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="expense_accountTitle_list" name="expense_accountTitle_list" class="form-control">
+                                        <option value="">&lt;すべて&gt;</a>
+                                        {% for accountTitle in accountTitleEntities %}
+                                            {% if accountTitle.id == selectAccountTitle %}
+                                                <option value="{{ accountTitle.id }}" selected>{{ accountTitle.name }}</open>
+                                            {% else %}
+                                                <option value="{{ accountTitle.id }}">{{ accountTitle.name }}</open>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            {% if message is not empty %}
+                <div class="alert alert-success">
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>使用日</th>
+                        <th>使用者</th>
+                        <th>経費項目</th>
+                        <th>支払先</th>
+                        <th>金額</th>
+                        <th>備考</th>
+                        <th>状態</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td class="expense_list_date">
+                            {{ entity.date|date('Y-m-d') }}({{daysLabel[entity.date|date('w')]}})
+                        </td>
+                        <td class="expense_list_user">
+                            {{ entity.user }}
+                        </td>
+                        <td class="expense_list_accountTitle">
+                            {{ entity.accountTitle }}
+                        </td>
+                        <td class="expense_list_payee">
+                            {{ entity.payee }}
+                        </td>
+                        <td class="expense_list_amount">
+                            {{ entity.amount }}
+                        </td>
+                        <td class="expense_list_note">
+                            {{ entity.note }}
+                        </td>
+                        <td class="expense_list_status">
+                            {% if 'open' == entity.status %}
+                                未精算
+                            {% elseif 'processing' == entity.status %}
+                                精算中
+                            {% elseif 'closed' == entity.status %}
+                                精算済
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content_row %}
+
+{% block foot_script %}
+    {% javascripts
+        'bundles/bmatznerjquery/js/jquery.min.js'
+        '@QuartetKakarotBundle/Resources/public/js/expense.js'
+     %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

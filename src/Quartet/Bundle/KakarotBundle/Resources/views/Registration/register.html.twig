@@ -1,0 +1,17 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% trans_default_domain "FOSUserBundle" %}
+
+{% block headline %}ログイン情報登録{% endblock headline %}
+
+{% block content_row %}
+
+{% block fos_user_content %}
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" value="登録" class="btn btn-primary" role="button"/>
+    </div>
+</form>
+{% endblock fos_user_content %}
+{% endblock content_row %}

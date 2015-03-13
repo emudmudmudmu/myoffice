@@ -1,0 +1,14 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% block headline %}パスワード変更 完了{% endblock headline %}
+
+{% block content_row %}
+    {% block fos_user_content %}
+        <div class="fos_user_user_show">
+            <p>ログイン名: {{ user.username }}</p>
+            <p>メールアドレス: {{ user.email }}</p>
+
+            <a href="{{ path('user') }}" class="btn btn-warning">一覧に戻る</a>
+        </div>
+    {% endblock fos_user_content %}
+{% endblock content_row %}

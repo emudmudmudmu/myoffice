@@ -1,0 +1,50 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}通知一覧{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            <div class="notification_top">
+                <div class="notification_nav_left">
+                    <a href="{{ path('notification_all_already_read', { 'date': currentDate }) }}" class="btn btn-success" role="button">一括既読</a>
+                </div>
+                <div class="notification_nav_right">
+                    <a href="{{ path('notification_pager', { 'date': prevDate }) }}">&lt;&lt;{{ prevDate|date('Y/m') }}</a>
+                    &nbsp;&nbsp;
+                    <span class="notification_currentDate">{{ currentDate|date('Y/m') }}</span>
+                    &nbsp;&nbsp;
+                    <a href="{{ path('notification_pager', { 'date': nextDate }) }}">&gt;&gt;{{ nextDate|date('Y/m') }}</a>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="notification_list_date">通知日</th>
+                        <th class="notification_list_content">内容</th>
+                        <th class="notification_list_button"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td class="notification_list_date">
+                            {{ entity.created|date('Y/m/d') }}({{daysLabel[entity.created|date('w')]}})
+                        </td>
+                        <td class="notification_list_content">
+                            {{ entity.content }}
+                        </td>
+                        <td class="notification_list_button">
+                            {% if false == entity.isRead %}
+                                <a href="{{ path('notification_already_read', { 'id': entity.id, 'date': currentDate }) }}" class="btn btn-info" role="button">既読にする</a>
+                            {% else %}
+                                <a href="{{ path('notification_not_yet_read', { 'id': entity.id, 'date': currentDate }) }}" class="btn btn-warning" role="button">未読にする</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content_row %}

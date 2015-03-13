@@ -1,0 +1,44 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% block headline %}ユーザー情報　一覧{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>氏名</th>
+                        <th>ログイン名</th>
+                        <th>メールアドレス</th>
+                        <th>部署</th>
+                        <th>役職</th>
+                        <th>権限</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td class="user_list_name_td">{{ entity.name }}</td>
+                        <td class="user_list_username_td">{{ entity.username }}</td>
+                        <td class="user_list_email_td">{{ entity.email }}</td>
+                        <td class="user_list_division_td">{{ entity.division }}</td>
+                        <td class="user_list_position_td">{{ entity.position }}</td>
+                        <td class="user_list_role_td">{{ entity.role }}</td>
+                        <td class="user_list_button_td">
+                            <a href="{{ path('user_edit', { 'id': entity.id }) }}" class="btn btn-info" role="button">編集</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary" role="button">新規ユーザー作成</a>
+            <br>
+            <br>
+            <a href="{{ path('management') }}" class="btn btn-warning" role="button">管理画面に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}

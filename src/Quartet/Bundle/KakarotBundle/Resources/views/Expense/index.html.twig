@@ -1,0 +1,75 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}経費管理{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            <div class="expense_top">
+                <div class="expense_nav_left">
+                    <a href="{{ path('expense_new') }}" class="btn btn-primary" role="button">新規作成</a>
+                </div>
+                <div class="expense_nav_right">
+                    <a href="{{ path('expense_pager', { 'date': prevDate }) }}">&lt;&lt;{{ prevDate|date('Y/m') }}</a>
+                    &nbsp;&nbsp;
+                    <span class="expense_currentDate">{{ currentDate|date('Y/m') }}</span>
+                    &nbsp;&nbsp;
+                    <a href="{{ path('expense_pager', { 'date': nextDate }) }}">&gt;&gt;{{ nextDate|date('Y/m') }}</a>
+                </div>
+            </div>
+            {% if message is not empty %}
+                <div class="alert alert-danger">
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>使用日</th>
+                        <th>経費項目</th>
+                        <th>支払先</th>
+                        <th>金額</th>
+                        <th>状態</th>
+                        <th>備考</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td class="expense_list_date">
+                            {{ entity.date|date('Y-m-d') }}({{daysLabel[entity.date|date('w')]}})
+                        </td>
+                        <td class="expense_list_accountTitle">
+                            {{ entity.accountTitle }}
+                        </td>
+                        <td class="expense_list_payee">
+                            {{ entity.payee }}
+                        </td>
+                        <td class="expense_list_amount">
+                            {{ entity.amount }}
+                        </td>
+                        <td class="expense_list_status">
+                            {% if 'open' == entity.status %}
+                                未精算
+                            {% elseif 'processing' == entity.status %}
+                                清算中
+                            {% elseif 'closed' == entity.status %}
+                                精算済
+                            {% endif %}
+                        </td>
+                        <td class="expense_list_note">
+                            {{ entity.note }}
+                        </td>
+                        <td class="expense_list_button">
+                            <a href="{{ path('expense_edit', { 'id': entity.id }) }}" class="btn btn-info" role="button">編集</a>
+                            <a href="{{ path('expense_copy', { 'date': currentDate, 'id': entity.id }) }}" class="btn btn-success" role="button">コピー</a>
+                            <a href="{{ path('expense_show', { 'id': entity.id }) }}" class="btn btn-danger" role="button">削除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content_row %}

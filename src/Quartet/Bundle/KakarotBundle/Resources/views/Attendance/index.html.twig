@@ -1,0 +1,64 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}勤怠管理{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            <div class="attandance_top">
+                <div class="attendance_nav_left">
+                    <a href="{{ path('attendance_new') }}" class="btn btn-primary" role="button">新規作成</a>
+                </div>
+                <div class="attendance_nav_right">
+                    <a href="{{ path('attendance_pager', { 'date': prevDate }) }}">&lt;&lt;{{ prevDate|date('Y/m') }}</a>
+                    &nbsp;&nbsp;
+                    <span class="attendance_currentDate">{{ currentDate|date('Y/m') }}</span>
+                    &nbsp;&nbsp;
+                    <a href="{{ path('attendance_pager', { 'date': nextDate }) }}">&gt;&gt;{{ nextDate|date('Y/m') }}</a>
+                </div>
+            </div>
+            {% if message is not empty %}
+                <div class="alert alert-danger">
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>日付</th>
+                        <th>出勤</th>
+                        <th>退勤</th>
+                        <th>メモ</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td class="attendance_list_date">
+                            {% if entity.date %}
+                                {{ entity.date|date('Y/m/d') }}({{daysLabel[entity.date|date('w')]}})
+                            {% endif %}
+                        </td>
+                        <td class="attendance_list_time">
+                            {% if entity.attended is not empty %}
+                                {{ entity.attended|date('H:i') }}
+                            {% endif %}
+                        </td>
+                        <td class="attendance_list_time">
+                            {% if entity.returned is not empty %}
+                                {{ entity.returned|date('H:i') }}
+                            {% endif %}
+                        </td>
+                        <td class="attendance_list_note">{{ entity.note }}</td>
+                        <td class="attendance_list_button">
+                            <a href="{{ path('attendance_edit', { 'id': entity.id }) }}" class="btn btn-info" role="button">編集</a>
+                            <a href="{{ path('attendance_show', { 'id': entity.id }) }}" class="btn btn-danger" role="button">削除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content_row %}

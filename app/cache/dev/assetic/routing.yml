@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: /Users/murayama/workspace/htdocs/kakarot/app/config/routing_dev.yml

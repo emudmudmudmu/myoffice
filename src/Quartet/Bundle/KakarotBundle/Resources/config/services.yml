@@ -1,0 +1,57 @@
+services:
+    acme_user.registration.form.type:
+        class: Quartet\Bundle\KakarotBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: fos_user_registration2 }
+
+    kakarot.google_calendar:
+        class: Quartet\Bundle\KakarotBundle\Service\GoogleCalendar
+        arguments:
+            entityManager: @doctrine.orm.entity_manager
+
+    kakarot.user_type:
+        class: Quartet\Bundle\KakarotBundle\Form\UserType
+        arguments:
+            entityManager: @doctrine.orm.entity_manager
+        tags:
+            - { name: form.type, alias: quartet_bundle_kakarotbundle_user }
+
+    kakarot.master_data_resgister:
+        class: Quartet\Bundle\KakarotBundle\Service\MasterDataResgister
+        arguments:
+            entityManager: @doctrine.orm.entity_manager
+
+    kakarot.clean_schedules_service:
+        class: Quartet\Bundle\KakarotBundle\Service\CleanSchedulesService
+        arguments:
+            entityManager: @doctrine.orm.entity_manager
+
+    kakarot.like_schedules_service:
+        class: Quartet\Bundle\KakarotBundle\Service\LikeSchedulesService
+        arguments:
+            entityManager: @doctrine.orm.entity_manager
+
+    kakarot.blog_schedules_service:
+        class: Quartet\Bundle\KakarotBundle\Service\BlogSchedulesService
+        arguments:
+            entityManager: @doctrine.orm.entity_manager
+
+    kakarot.holidayscalendar_service:
+        class: Quartet\Bundle\KakarotBundle\Service\HolidaysCalendarService
+        arguments:
+            entityManager: @doctrine.orm.entity_manager
+            googleCalendar: @kakarot.google_calendar
+
+# EventListener
+    user.listener:
+        class: Quartet\Bundle\KakarotBundle\EventListener\UserEventListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    gedmo.listener.softdeleteable:
+        class: Gedmo\SoftDeleteable\SoftDeleteableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ @annotation_reader ] ]

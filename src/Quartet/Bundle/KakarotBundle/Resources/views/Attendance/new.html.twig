@@ -1,0 +1,79 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}勤怠管理　新規作成{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            {% if message is not empty %}
+                <div class="alert alert-danger">
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+            {{ form_start(form) }}
+                <table class="table table-striped">
+                    <tr>
+                        <td class="attendance_title_td">{{ form_label(form.date, '日付') }}</td>
+                        <td class="attendance_form_td">{{ form_widget(form.date.year) }}</td>
+                        <td class="attendance_character_td">/</td>
+                        <td class="attendance_form_td">{{ form_widget(form.date.month) }}</td>
+                        <td class="attendance_character_td">/</td>
+                        <td class="attendance_form_td">{{ form_widget(form.date.day) }}</td>
+                        <td class="attendance_space_td"></td>
+                    </tr>
+                    <tr>
+                        <td class="attendance_title_td">{{ form_label(form.attended, '出勤') }}</td>
+                        <td class="attendance_form_td">{{ form_widget(form.attended.hour) }}</td>
+                        <td class="attendance_character_td">:</td>
+                        <td class="attendance_form_td">{{ form_widget(form.attended.minute) }}</td>
+                        <td class="attendance_space_td" colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td class="attendance_title_td">{{ form_label(form.returned, '退勤') }}</td>
+                        <td class="attendance_form_td">{{ form_widget(form.returned.hour) }}</td>
+                        <td class="attendance_character_td">:</td>
+                        <td class="attendance_form_td">{{ form_widget(form.returned.minute) }}</td>
+                        <td class="attendance_space_td" colspan="3"></td>
+                     </tr>
+                    <tr>
+                        <td class="attendance_title_td">{{ form_label(form.break1Started, '昼休憩開始') }}</td>
+                        <td class="attendance_form_td">{{ form_widget(form.break1Started.hour) }}</td>
+                        <td class="attendance_character_td">:</td>
+                        <td class="attendance_form_td">{{ form_widget(form.break1Started.minute) }}</td>
+                        <td class="attendance_space_td" colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td class="attendance_title_td">{{ form_label(form.break1Ended, '昼休憩終了') }}</td>
+                        <td class="attendance_form_td">{{ form_widget(form.break1Ended.hour) }}</td>
+                        <td class="attendance_character_td">:</td>
+                        <td class="attendance_form_td">{{ form_widget(form.break1Ended.minute) }}</td>
+                        <td class="attendance_space_td" colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td class="attendance_title_td">{{ form_label(form.break2Started, '夜休憩開始') }}</td>
+                        <td class="attendance_form_td">{{ form_widget(form.break2Started.hour) }}</td>
+                        <td class="attendance_character_td">:</td>
+                        <td class="attendance_form_td">{{ form_widget(form.break2Started.minute) }}</td>
+                        <td class="attendance_space_td" colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td class="attendance_title_td">{{ form_label(form.break2Ended, '夜休憩終了') }}</td>
+                        <td class="attendance_form_td">{{ form_widget(form.break2Ended.hour) }}</td>
+                        <td class="attendance_character_td">:</td>
+                        <td class="attendance_form_td">{{ form_widget(form.break2Ended.minute) }}</td>
+                        <td class="attendance_space_td" colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td class="attendance_title_td">{{ form_label(form.note, 'メモ') }}</td>
+                        <td colspan="6">{{ form_widget(form.note) }}</td>
+                    </tr>
+                </table>
+                <div class="attendance_hidden_area">
+                    {{ form_widget(form.user) }}
+                </div>
+            {{ form_end(form) }}
+            <br>
+            <a href="{{ path('attendance') }}" class="btn btn-warning" role="button">一覧に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}

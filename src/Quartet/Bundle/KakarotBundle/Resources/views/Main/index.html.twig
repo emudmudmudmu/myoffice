@@ -1,0 +1,108 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block headline %}社内ポータルサイト{% endblock headline %}
+
+{% block content_row %}
+
+    <h3>ゴミ捨て・掃除当番（今週）<a href="http://kakarot/qcwiki/?p=2172"  target="_blank" class="btn btn-info" role="button">＊</a></h3>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                {% for entity in clean_schedules %}
+                    {% if entity.holiday == 1 %}
+                        <td class="clean_schedules_td danger">
+                    {% elseif entity.login == 1 %}
+                        <td class="clean_schedules_td success">
+                    {% else %}
+                        <td class="clean_schedules_td">
+                    {% endif %}
+                            {{ entity.date }}({{ entity.dayname }})
+                        </td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for entity in clean_schedules %}
+                    {% if entity.holiday == 1 %}
+                        <td class="clean_schedules_td danger">
+                    {% elseif entity.login == 1 %}
+                        <td class="clean_schedules_td success">
+                    {% else %}
+                        <td class="clean_schedules_td">
+                    {% endif %}
+                            {{ entity.name }}
+                        </td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>今月のいいねグループ＆褒められ担当</h3>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td></td>
+                {% for day in oneWeekHolidays %}
+                    <td class="like_schedules_td">{{ day.dayname }}</td>
+                {% endfor %}
+            </tr>
+
+            {% for groups in like_schedules %}
+                <tr>
+                    <td>
+                        グループ{{ groups.groupname }}
+                    </td>
+                {% for user in groups.group %}
+                    {% if user.login == 1 %}
+                        <td class="like_schedules_td success">
+                    {% else %}
+                        <td class="like_schedules_td">
+                    {% endif %}
+                            {{ user.username }}
+                        </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>知っ得当番（今月）</h3>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                {% for day in oneWeekHeader %}
+                    {% if loop.index == 6 %}
+                        <td class="blog_schedules_header_td danger">
+                    {% elseif loop.index == 7 %}
+                        <td class="blog_schedules_header_td danger">
+                    {% else %}
+                        <td class="blog_schedules_header_td">
+                    {% endif %}
+                            {{ day.name}}</td>
+                {% endfor %}
+            </tr>
+            {% for days in blog_schedules %}
+                <tr>
+                    {% for user in days %}
+                        {% if loop.index == 6 %}
+                            <td class="blog_schedules_td danger">
+                        {% elseif loop.index == 7 %}
+                            <td class="blog_schedules_td danger">
+                        {% elseif user.holiday == 1 %}
+                            <td class="blog_schedules_td danger">
+                        {% elseif user.login == 1 %}
+                            <td class="blog_schedules_td success">
+                        {% else %}
+                            <td class="blog_schedules_td">
+                        {% endif%}
+                                {{ user.date }}<br>{{ user.username }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock content_row %}

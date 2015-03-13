@@ -1,0 +1,5 @@
+<testsuites>
+    <testsuite name="Project Test Suite">
+        <directory>./src/Quartet/Bundle/KakarotBundle/Tests</directory>
+    </testsuite>
+</testsuites>

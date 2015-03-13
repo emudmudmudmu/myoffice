@@ -1,0 +1,61 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}有休申請　新規作成{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            {% if message is not empty %}
+                <div class="alert alert-danger">
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+            {% if form_errors(form.endDate)|length > 0 %}
+                <div class="alert alert-danger">
+                    <p>{{ form_errors(form.endDate) }}</p>
+                </div>
+            {% endif %}
+            {{ form_start(form) }}
+                <table class="table table-striped">
+                    <tr>
+                        <td class="paidholiday_title_td">{{ form_label(form.startDate, '開始日') }}</td>
+                        <td class="paidholiday_form_td">{{ form_widget(form.startDate.year) }}</td>
+                        <td class="paidholiday_character_td">/</td>
+                        <td class="paidholiday_form_td">{{ form_widget(form.startDate.month) }}</td>
+                        <td class="paidholiday_character_td">/</td>
+                        <td class="paidholiday_form_td">{{ form_widget(form.startDate.day) }}</td>
+                        <td class="paidholiday_space_td"></td>
+                    </tr>
+                    <tr>
+                        <td class="paidholiday_title_td">{{ form_label(form.endDate, '終了日') }}</td>
+                        <td class="paidholiday_form_td">{{ form_widget(form.endDate.year) }}</td>
+                        <td class="paidholiday_character_td">/</td>
+                        <td class="paidholiday_form_td">{{ form_widget(form.endDate.month) }}</td>
+                        <td class="paidholiday_character_td">/</td>
+                        <td class="paidholiday_form_td">{{ form_widget(form.endDate.day) }}</td>
+                        <td class="paidholiday_space_td"></td>
+                    </tr>
+                    <tr>
+                        <td class="paidholiday_title_td">{{ form_label(form.note, '理由') }}</td>
+                        <td colspan="6">{{ form_widget(form.note) }}</td>
+                    </tr>
+                </table>
+                <div class="paidholiday_hidden_area">
+                    {{ form_widget(form.author) }}
+                    {{ form_widget(form.approver) }}
+                </div>
+            {{ form_end(form) }}
+            <br>
+            <a href="{{ path('paidholiday') }}" class="btn btn-warning" role="button">一覧に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}
+
+{% block foot_script %}
+    {% javascripts
+        'bundles/bmatznerjquery/js/jquery.min.js'
+        '@QuartetKakarotBundle/Resources/public/js/paidholiday.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

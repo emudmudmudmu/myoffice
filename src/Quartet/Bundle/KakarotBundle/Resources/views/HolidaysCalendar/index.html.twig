@@ -1,0 +1,48 @@
+{% extends 'QuartetKakarotBundle::myofficeBase.html.twig' %}
+
+{% block headline %}休日カレンダー{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            <div>
+                <div class="attendance_nav_left">
+                    <a href="{{ path('holidayscalendar_new') }}" class="btn btn-primary" role="button">新規作成</a>
+                    <a href="{{ path('holidayscalendar_googlecalendar', { 'year': currentYear }) }}" class="btn btn-info" role="button">Googleカレンダーから祝日を取得</a>
+                </div>
+                <div class="attendance_nav_right">
+                    <a href="{{ path('holidayscalendar_pager', { 'year': prevYear }) }}">&lt;&lt;{{ prevYear }}</a>
+                    &nbsp;&nbsp;
+                    <span class="holidayscalendar_currentYear">{{ currentYear }}</span>
+                    &nbsp;&nbsp;
+                    <a href="{{ path('holidayscalendar_pager', { 'year': nextYear }) }}">&gt;&gt;{{ nextYear }}</a>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>休日名</th>
+                        <th>日付</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td>
+                            {{ entity.name}}
+                        </td>
+                        <td>
+                            {{ entity.date|date('Y/m/d') }}
+                        </td>
+                        <td class="attendance_list_button">
+                            <a href="{{ path('holidayscalendar_edit', { 'id': entity.id }) }}" class="btn btn-info" role="button">編集</a>
+                            <a href="{{ path('holidayscalendar_show', { 'id': entity.id }) }}" class="btn btn-danger" role="button">削除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content_row %}

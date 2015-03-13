@@ -1,0 +1,195 @@
+/*---- 管理画面　ユーザー情報画面 ----*/
+.daySetting_form {
+  width: 25px;
+}
+.daySetting_label {
+  width: 50px;
+  padding-top: 20px;
+}
+/*---- 社内ポータルサイト　ゴミ捨て当番・掃除当番 ----*/
+.clean_schedules_td {
+  width: 228px;
+}
+/*---- 社内ポータルサイト　いいね！グループ ----*/
+.like_schedules_td {
+  width: 200px;
+}
+/*---- 社内ポータルサイト　知っ得カレンダー ----*/
+.blog_schedules_header_td {
+  width: 162px;
+}
+.blog_schedules_td {
+  width: 162px;
+  height: 60px;
+}
+/*---- 管理画面 ----*/
+.management_label_td {
+  width: 750px;
+}
+.management_button_td {
+  width: 390px;
+}
+/*---- 管理画面　ユーザー情報一覧 ----*/
+.user_list_name_td {
+  width: 200px;
+}
+.user_list_username_td {
+  width: 150px;
+}
+.user_list_email_td {
+  width: 300px;
+}
+.user_list_division_td {
+  width: 150px;
+}
+.user_list_position_td {
+  width: 100px;
+}
+.user_list_role_td {
+  width: 70px;
+}
+.user_list_button_td {
+  width: 70px;
+}
+/*---- 勤怠管理画面 ----*/
+.attendance_title_td {
+  width: 450px;
+}
+.attendance_form_td {
+  width: 140px;
+}
+.attendance_character_td {
+  width: 20px;
+}
+.attendance_space_td {
+  width: 130px;
+}
+.attendance_hidden_area {
+  display: none;
+}
+.attendance_list_date {
+  width: 150px;
+}
+.attendance_list_time {
+  width: 90px;
+}
+.attendance_list_note {
+  width: 540px;
+}
+.attendance_list_button {
+  width: 130px;
+}
+.attendance_nav_left {
+  float: left;
+}
+.attendance_nav_right {
+  float: right;
+}
+.attendance_currentDate {
+  font-size: 28px;
+}
+.attandance_top {
+  height: 50px;
+}
+/*---- 休日カレンダー ----*/
+.holidayscalendar_currentYear {
+  font-size: 28px;
+}
+.holidayscalendar_title_td {
+  width: 450px;
+}
+.holidayscalendar_form_td {
+  width: 140px;
+}
+.holidayscalendar_character_td {
+  width: 20px;
+}
+.holidayscalendar_space_td {
+  width: 130px;
+}
+/*---- 勤怠管理画面 ----*/
+.expense_title_td {
+  width: 350px;
+}
+.expense_form_td {
+  width: 140px;
+}
+.expense_character_td {
+  width: 20px;
+}
+.expense_space_td {
+  width: 130px;
+}
+.expense_hidden_area {
+  display: none;
+}
+.expense_list_date {
+  width: 120px;
+}
+.expense_list_user {
+  width: 190px;
+}
+.expense_list_accountTitle {
+  width: 200px;
+}
+.expense_list_payee {
+  width: 200px;
+}
+.expense_list_amount {
+  width: 100px;
+}
+.expense_list_status {
+  width: 60px;
+}
+.expense_list_note {
+  width: 170px;
+}
+.expense_list_button {
+  width: 190px;
+}
+.expense_nav_left {
+  float: left;
+}
+.expense_nav_right {
+  float: right;
+}
+.expense_currentDate {
+  font-size: 28px;
+}
+.expense_top {
+  height: 50px;
+}
+/*---- 有休申請画面 ----*/
+.paidholiday_title_td {
+  width: 350px;
+}
+.paidholiday_form_td {
+  width: 140px;
+}
+.paidholiday_character_td {
+  width: 20px;
+}
+.paidholiday_space_td {
+  width: 130px;
+}
+.paidholiday_hidden_area {
+  display: none;
+}
+.paidholiday_list_date {
+  width: 120px;
+}
+.paidholiday_list_note {
+  width: 670px;
+}
+.paidholiday_list_button {
+  width: 130px;
+}
+.paidholiday_nav_left {
+  float: left;
+}
+.paidholiday_nav_right {
+  float: right;
+}
+.paidholiday_currentDate {
+  font-size: 28px;
+}

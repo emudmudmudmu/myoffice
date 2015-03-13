@@ -1,0 +1,16 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% block headline %}役職　編集{% endblock headline %}
+
+{% block content_row %}
+    <div class="container">
+        <div class="contents">
+            {{ form(edit_form) }}
+            <br>
+            <a href="{{ path('position_show', { 'id': entity.id }) }}" class="btn btn-danger">削除</a>
+            <br>
+            <br>
+            <a href="{{ path('position') }}" class="btn btn-warning" role="button">一覧に戻る</a>
+        </div>
+    </div>
+{% endblock content_row %}

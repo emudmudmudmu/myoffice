@@ -1,0 +1,18 @@
+{% extends 'QuartetKakarotBundle::base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block headline %}ログイン情報登録{% endblock headline %}
+
+{% block content_row %}
+
+{% block fos_user_content %}
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    {% if app.session is not empty %}
+        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+        <p><a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-info" role="button">詳細情報を編集する</a></p>
+        <br>
+        <a href="{{ path('user') }}" class="btn btn-warning">一覧に戻る</a>
+    {% endif %}
+{% endblock fos_user_content %}
+{% endblock content_row %}
